@@ -5404,7 +5404,7 @@ class User
                 break;
 
             case 'discover':
-                $where_query .= sprintf("WHERE posts.privacy = 'public' AND !(posts.user_id = %s AND posts.user_type = 'user')", secure($this->_data['user_id'], 'int'));
+                $where_query .= sprintf("WHERE posts.privacy = 'public' AND posts.post_type != 'product' AND !(posts.user_id = %s AND posts.user_type = 'user')", secure($this->_data['user_id'], 'int'));
                 /* exclude posts from viewer friends */
                 /* viewer friends posts -> authors */
                 $where_query .= sprintf(" AND !(posts.user_id IN (%s) AND posts.user_type = 'user')", $this->spread_ids($this->get_friends_followings_ids()));
