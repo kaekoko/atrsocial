@@ -173,7 +173,7 @@ try {
 	}elseif($user->_data['user_subcribed'] == '3'){
 		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'diamond'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
 	}else{
-		$get_rows=[];
+		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'free'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
 	}
 	
 
