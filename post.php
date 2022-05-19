@@ -39,7 +39,7 @@ try {
 	}elseif($user->_data['user_subcribed'] == '3'){
 		$get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'diamond'" ) or _error("SQL_ERROR");
 	}else{
-		$get_rows=[];
+		$get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'free'" ) or _error("SQL_ERROR");
 	}
 
 	
