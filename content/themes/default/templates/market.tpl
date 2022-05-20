@@ -11,10 +11,10 @@
         <p class="text-xlg">{__($system['system_description_marketplace'])}</p>
 		
         <div class="row mt20">
-            <div class="col-sm-9 col-lg-6 mx-sm-auto">
+            <div class="col-sm-9 col-lg-6 mx-sm-auto text-center">
                 <form class="js_search-form" data-handle="market">
                     <div class="input-group">
-                        <a class='btn' href="/packages">Upgrade Plan To See Girls</a>
+                        <a class='btn btn-danger' href="/packages">Upgrade Plan To See Girls</a>
                     </div>
                 </form>
             </div>
