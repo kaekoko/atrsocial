@@ -126,15 +126,7 @@
     <div class="lightbox">
         <div class="lightbox-container">
             <div class="lightbox-preview">
-                <div class="lightbox-next js_lightbox-slider">
-                    <i class="fa fa-chevron-circle-right fa-3x"></i>
-                </div>
-                <div class="lightbox-prev js_lightbox-slider">
-                    <i class="fa fa-chevron-circle-left fa-3x"></i>
-                </div>
-                <div class="lightbox-download">
-                    <a href="{literal}{{image}}{/literal}" download>{__("Download")}</a> - <a target="_blank" href="{literal}{{image}}{/literal}">{__("View Original")}</a>
-                </div>
+                
                 <img alt="" class="img-fluid" src="{literal}{{image}}{/literal}">
             </div>
             <div class="lightbox-data">
