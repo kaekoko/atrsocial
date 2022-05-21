@@ -5255,21 +5255,21 @@ class User
                                 /* viewer friends posts -> authors */
                                 $where_query .= sprintf(" OR (posts.user_id IN (%s) AND posts.user_type = 'user'AND posts.post_type != 'product' AND posts.privacy = 'friends' AND posts.in_group = '0' AND posts.in_event = '0')", $this->spread_ids($this->get_friends_followings_ids()));
                                 /* viewer friends posts -> their wall posts */
-                                $where_query .= sprintf(" OR (posts.in_wall = '1' AND posts.wall_id IN (%s)AND posts.post_type != 'product' AND posts.user_type = 'user' AND posts.privacy = 'friends')", $this->spread_ids($this->get_friends_followings_ids()));
+                                $where_query .= sprintf(" OR (posts.in_wall = '1' AND posts.wall_id IN (%s) AND posts.post_type != 'product' AND posts.user_type = 'user' AND posts.privacy = 'friends')", $this->spread_ids($this->get_friends_followings_ids()));
                                 /* [3] get posts from followings */
                                 /* viewer followings posts -> authors */
-                                $where_query .= sprintf(" OR (posts.user_id IN (%s) AND posts.user_type = 'user'AND posts.post_type != 'product' AND posts.privacy = 'public' AND posts.in_group = '0' AND posts.in_event = '0')", $this->spread_ids($this->_data['followings_ids']));
+                                $where_query .= sprintf(" OR (posts.user_id IN (%s) AND posts.user_type = 'user' AND posts.post_type != 'product' AND posts.privacy = 'public' AND posts.in_group = '0' AND posts.in_event = '0')", $this->spread_ids($this->_data['followings_ids']));
                                 /* viewer followings posts -> their wall posts */
                                 $where_query .= sprintf(" OR (posts.in_wall = '1' AND posts.wall_id IN (%s) AND posts.post_type != 'product' AND posts.user_type = 'user' AND posts.privacy = 'public')", $this->spread_ids($this->_data['followings_ids']));
                                 /* [4] get viewer liked pages posts */
                                 $where_query .= sprintf(" OR (posts.user_id IN (%s) AND posts.post_type != 'product' AND posts.user_type = 'page')", $this->spread_ids($this->get_pages_ids()));
                                 /* [5] get groups (memberhsip approved only) posts & exclude the viewer posts */
-                                $where_query .= sprintf(" OR (posts.group_id IN (%s) AND posts.in_group = '1'AND posts.post_type != 'product' AND  posts.group_approved = '1' AND posts.user_id != %s)", $this->spread_ids($this->get_groups_ids(true)), $me);
+                                $where_query .= sprintf(" OR (posts.group_id IN (%s) AND posts.in_group = '1' AND posts.post_type != 'product' AND  posts.group_approved = '1' AND posts.user_id != %s)", $this->spread_ids($this->get_groups_ids(true)), $me);
                                 /* [6] get events posts & exclude the viewer posts */
-                                $where_query .= sprintf(" OR (posts.event_id IN (%s) AND posts.in_event = '1'AND posts.post_type != 'product' AND posts.event_approved = '1' AND posts.user_id != %s)", $this->spread_ids($this->get_events_ids()), $me);
+                                $where_query .= sprintf(" OR (posts.event_id IN (%s) AND posts.in_event = '1' AND posts.post_type != 'product' AND posts.event_approved = '1' AND posts.user_id != %s)", $this->spread_ids($this->get_events_ids()), $me);
                             } else {
                                 /* get all posts (exclude any post in a group or event and not approved) */
-                                $where_query .= " posts.privacy = 'public'AND posts.post_type != 'product' AND ((posts.in_group = '0' AND posts.in_event = '0') OR (posts.in_group = '1' AND posts.group_approved = '1') OR (posts.in_event = '1' AND posts.event_approved = '1')) ";
+                                $where_query .= " posts.privacy = 'public' AND posts.post_type != 'product' AND ((posts.in_group = '0' AND posts.in_event = '0') OR (posts.in_group = '1' AND posts.group_approved = '1') OR (posts.in_event = '1' AND posts.event_approved = '1')) ";
                             }
                             break;
 
@@ -5285,7 +5285,7 @@ class User
                         $where_query .= " OR ("; /* [04] start of public search query clause */
                         $where_query .= "(posts.text LIKE $query)";
                         /* get only public posts [except: group posts & event posts & wall posts] */
-                        $where_query .= " AND (posts.in_group = '0' AND posts.in_event = '0' AND posts.in_wall = '0' AND posts.privacy = 'public')";
+                        $where_query .= " AND (posts.in_group = '0' AND posts.in_event = '0' AND posts.in_wall = '0' AND posts.privacy = 'public' AND posts.post_type != 'product')";
                         $where_query .= ")"; /* [04] end of public search query clause */
                     }
                 }
@@ -5314,9 +5314,9 @@ class User
                             /* Yes they are friends */
                             $where_query .= "WHERE (";
                             /* get all target posts [except: group posts & event posts & hidden posts & anonymous posts] */
-                            $where_query .= "(posts.user_id = $id AND posts.user_type = 'user' AND posts.in_group = '0' AND posts.in_event = '0' AND posts.privacy != 'me' AND posts.is_hidden = '0' AND posts.is_anonymous = '0')";
+                            $where_query .= "(posts.user_id = $id AND posts.user_type = 'user' AND posts.in_group = '0' AND posts.in_event = '0' AND posts.privacy != 'me' AND posts.is_hidden = '0' AND posts.is_anonymous = '0' AND posts.post_type != 'product')";
                             /* get target wall posts (from others to the target) [except: hidden posts] */
-                            $where_query .= " OR (posts.wall_id = $id AND posts.in_wall = '1' AND posts.is_hidden = '0')";
+                            $where_query .= " OR (posts.wall_id = $id AND posts.in_wall = '1' AND posts.is_hidden = '0' AND posts.post_type != 'product')";
                             $where_query .= ")";
                         } else {
                             /* No they are not friends */

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2022-05-14 06:38:05
+/* Smarty version 3.1.40, created on 2022-05-21 02:30:18
   from 'C:\xampp\htdocs\atrsocial\content\themes\default\templates\_js_templates.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_627f4e4d53b3a0_50646081',
+  'unifunc' => 'content_62884eba90e887_21048418',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '131fc48ac4e963cf6c65e099e05607d0b1865105' => 
     array (
       0 => 'C:\\xampp\\htdocs\\atrsocial\\content\\themes\\default\\templates\\_js_templates.tpl',
-      1 => 1643111368,
+      1 => 1653061086,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:__svg_icons.tpl' => 12,
   ),
 ),false)) {
-function content_627f4e4d53b3a0_50646081 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62884eba90e887_21048418 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Modals --><div id="modal" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><div class="loader pt10 pb10"></div></div></div></div></div><?php echo '<script'; ?>
  id="modal-login" type="text/template"><div class="modal-header"><h6 class="modal-title"><?php echo __("Not Logged In");?>
 </h6></div><div class="modal-body"><p><?php echo __("Please log in to continue");?>
@@ -64,9 +64,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?></div></div><?ph
 /search/{{#hashtag}}hashtag/{{/hashtag}}{{query}}"><i class="fa fa-search pr5"></i> <?php echo __("Search for");?>
  {{#hashtag}}#{{/hashtag}}{{query}}</a></div><?php echo '</script'; ?>
 ><!-- Search --><!-- Lightbox --><?php echo '<script'; ?>
- id="lightbox" type="text/template"><div class="lightbox"><div class="lightbox-container"><div class="lightbox-preview"><div class="lightbox-next js_lightbox-slider"><i class="fa fa-chevron-circle-right fa-3x"></i></div><div class="lightbox-prev js_lightbox-slider"><i class="fa fa-chevron-circle-left fa-3x"></i></div><div class="lightbox-download"><a href="{{image}}" download><?php echo __("Download");?>
-</a> - <a target="_blank" href="{{image}}"><?php echo __("View Original");?>
-</a></div><img alt="" class="img-fluid" src="{{image}}"></div><div class="lightbox-data"><div class="clearfix"><div class="pt5 pr5 float-right"><button type="button" class="close lightbox-close js_lightbox-close"><span aria-hidden="true">&times;</span></button></div></div><div class="lightbox-post"><div class="js_scroller" data-slimScroll-height="100%"><div class="loader mtb10"></div></div></div></div></div></div><?php echo '</script'; ?>
+ id="lightbox" type="text/template"><div class="lightbox"><div class="lightbox-container"><div class="lightbox-preview"><img alt="" class="img-fluid" src="{{image}}"></div><div class="lightbox-data"><div class="clearfix"><div class="pt5 pr5 float-right"><button type="button" class="close lightbox-close js_lightbox-close"><span aria-hidden="true">&times;</span></button></div></div><div class="lightbox-post"><div class="js_scroller" data-slimScroll-height="100%"><div class="loader mtb10"></div></div></div></div></div></div><?php echo '</script'; ?>
 ><?php echo '<script'; ?>
  id="lightbox-nodata" type="text/template"><div class="lightbox"><div class="lightbox-container"><div class="lightbox-preview nodata"><div class="lightbox-exit js_lightbox-close"><i class="fas fa-times fa-2x"></i></div><img alt="" class="img-fluid" src="{{image}}"></div></div></div><?php echo '</script'; ?>
 ><?php echo '<script'; ?>
@@ -200,8 +198,8 @@ echo $_smarty_tpl->tpl_vars['_user']->value['user_firstname'];?>
  <?php echo $_smarty_tpl->tpl_vars['_user']->value['user_lastname'];
 }?></strong><?php if ($_smarty_tpl->tpl_vars['system']->value['chat_status_enabled'] && !$_smarty_tpl->tpl_vars['_user']->value['user_is_online']) {?><br><small><?php ob_start();
 echo __("Last Seen");
-$_prefixVariable2 = ob_get_clean();
-echo $_prefixVariable2;?>
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
  <span class="js_moment" data-time="<?php echo $_smarty_tpl->tpl_vars['_user']->value['user_last_seen'];?>
 "><?php echo $_smarty_tpl->tpl_vars['_user']->value['user_last_seen'];?>
 </span></small><?php }?></div></div></div></li><?php
