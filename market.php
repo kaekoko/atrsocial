@@ -166,12 +166,12 @@ try {
    
 	if($user->_is_admin){
 		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
-	}elseif($user->_data['user_subscribed']=='1'){
+	}elseif($user->_data['user_package']=='1'){
      $get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'gold'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
-	}elseif($user->_data['user_subcribed'] == '2'){
-		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'platinum'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
-	}elseif($user->_data['user_subcribed'] == '3'){
-		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'diamond'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
+	}elseif($user->_data['user_package'] == '2'){
+		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'platinum' OR posts_products.status = 'gold' " . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
+	}elseif($user->_data['user_package'] == '3'){
+		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'gold' OR posts_products.status = 'platinum' OR posts_products.status = 'diamond'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
 	}else{
 		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'free'" . $where_query . $distance_query . $order_query . $limit_query) or _error("SQL_ERROR");
 	}
