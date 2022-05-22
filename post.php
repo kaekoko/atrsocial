@@ -21,52 +21,11 @@ if (!isset($_GET['post_id']) || !is_numeric($_GET['post_id'])) {
 }
 
 try {
-   
+
 	// get post
 	define('PRIVACY_ERRORS', true);
-
-	
-
-	$row = array();
-   
-	if($user->_is_admin){
-		$get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1'") or _error("SQL_ERROR");
-	}elseif($user->_data['user_subscribed']=='1'){
-     $get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'gold'" ) or _error("SQL_ERROR");
-
-	}elseif($user->_data['user_subcribed'] == '2'){
-		$get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'platinum'" ) or _error("SQL_ERROR");
-	}elseif($user->_data['user_subcribed'] == '3'){
-		$get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'diamond'" ) or _error("SQL_ERROR");
-	}else{
-		$get_rows = $db->query("SELECT post_id  FROM posts_products  WHERE  status = 'free'" ) or _error("SQL_ERROR");
-	}
-
-	
-
-	while ($row = $get_rows->fetch_assoc()) {
-		$row = $row['post_id'];
-
-		if ($row) {
-			$rows[] = $row;
-		}
-
-	}
-	$prepost = $user->get_post($_GET['post_id']);
-
-	if($prepost['post_type'] == 'product'){
-		if (in_array($_GET['post_id'], $rows)){
-			$post = $user->get_post($_GET['post_id']);
-		}else{
-			_error(404);
-		}
-
-	}else{
-		$post = $user->get_post($_GET['post_id']);
-	}
-	 
-	
-    if (!$post) {
+	$post = $user->get_post($_GET['post_id']);
+	if (!$post) {
 		_error(404);
 	}
 	/* assign variables */
