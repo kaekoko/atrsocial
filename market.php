@@ -28,7 +28,18 @@ try {
 		case '':
 			// get promoted products
 			$promoted_products = array();
-			$get_promoted = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+			if($user->_is_admin){
+		$get_promoted = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+	}elseif($user->_data['user_package']=='1'){
+		$get_promoted = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'gold' AND posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+	}elseif($user->_data['user_package'] == '2'){
+		$get_promoted = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'gold' OR posts_products.status = 'platinum' AND posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+	}elseif($user->_data['user_package'] == '3'){
+		$get_promoted = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'gold' OR posts_products.status = 'platinum' OR posts_products.status = 'diamond' AND posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+	}else{
+		$get_rows = $db->query("SELECT posts.post_id " . $distance_clause . " FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.status = 'free'posts.boosted = '1' ORDER BY RAND() LIMIT 3") or _error("SQL_ERROR");
+	}
+			
 			while ($promoted_product = $get_promoted->fetch_assoc()) {
 				$promoted_product = $user->get_post($promoted_product['post_id']);
 				if ($promoted_product) {
