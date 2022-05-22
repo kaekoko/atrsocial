@@ -22,9 +22,44 @@ if (!isset($_GET['post_id']) || !is_numeric($_GET['post_id'])) {
 
 try {
 
+    
 	// get post
 	define('PRIVACY_ERRORS', true);
 	$post = $user->get_post($_GET['post_id']);
+	if($post["post_type"] == 'product'){
+			$package_id=$user->_data['user_package'];
+			$user_id=$user->_data['user_id'];
+			global $db;
+			$package=$db->query("SELECT packages.name FROM packages WHERE packages.package_id = $package_id") or _error("SQL_ERROR");
+			$status = $package->fetch_assoc();
+			$status_name=strtolower($status['name']);
+			$package_pd = $db->query("SELECT posts_products.post_id FROM posts_products  WHERE posts_products.status = '$status_name' ") or _error("SQL_ERROR");
+			$user_pd = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = '$user_id' WHERE posts.post_type = 'product'") or _error("SQL_ERROR");
+			$product_by_package = [];
+			$product_by_user = [];
+			while ($row = $package_pd->fetch_assoc()) {
+				$product_by_package[]= $row['post_id'];
+
+			}
+			
+			while ($row_user = $user_pd->fetch_assoc()) {
+				$product_by_user[]= $row_user['post_id'];
+
+			}
+			
+			
+	        if (in_array($_GET['post_id'], $product_by_package) || in_array($_GET['post_id'], $product_by_user) || $user->_is_admin){
+                $post = $user->get_post($_GET['post_id']);
+			}else{
+				_error('PERMISSION');
+
+			}
+                
+
+			  
+
+		
+	}
 	if (!$post) {
 		_error(404);
 	}
