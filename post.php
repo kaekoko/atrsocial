@@ -28,6 +28,7 @@ try {
 	$post = $user->get_post($_GET['post_id']);
 	if($post["post_type"] == 'product'){
 			$package_id=$user->_data['user_package'];
+	  if($package_id != null){
 			$user_id=$user->_data['user_id'];
 			global $db;
 			$package=$db->query("SELECT packages.name FROM packages WHERE packages.package_id = $package_id") or _error("SQL_ERROR");
@@ -55,7 +56,11 @@ try {
 
 			}
                 
-
+		}elseif($user->_is_admin){
+			$post = $user->get_post($_GET['post_id']);
+		}else{
+			_error('PERMISSION');
+		}
 			  
 
 		

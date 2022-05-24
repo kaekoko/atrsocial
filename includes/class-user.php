@@ -8272,7 +8272,7 @@ class User
                         return $photos;
                     }
                 }
-                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur, posts.user_id, posts.user_type, posts.privacy FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts_photos.album_id = %s AND posts.is_anonymous = '0' AND posts.post_type != 'product' ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['max_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
+                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur, posts.user_id, posts.user_type, posts.privacy FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts_photos.album_id = %s AND posts.is_anonymous = '0'  ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['max_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
                
                 if ($get_photos->num_rows > 0) {
                     while ($photo = $get_photos->fetch_assoc()) {
@@ -8311,7 +8311,7 @@ class User
                 }
                 /* get all user photos (except photos from groups or events) */
                 $offset *= $system['min_results_even'];
-                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur, posts.privacy FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts.user_id = %s AND posts.user_type = 'user' AND posts.post_type != 'product' AND posts.in_group = '0' AND posts.in_event = '0' AND posts.is_anonymous = '0' ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['min_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
+                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur, posts.privacy FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts.user_id = %s AND posts.user_type = 'user'  AND posts.post_type != 'product' AND posts.in_group = '0' AND posts.in_event = '0' AND posts.is_anonymous = '0' ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['min_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
                 if ($get_photos->num_rows > 0) {
                     while ($photo = $get_photos->fetch_assoc()) {
                         if ($this->check_privacy($photo['privacy'], $id)) {
@@ -8337,7 +8337,7 @@ class User
                 }
                 /* get all page photos */
                 $offset *= $system['min_results_even'];
-                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts.user_id = %s AND posts.user_type = 'page' AND posts.post_type != 'product' ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['min_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
+                $get_photos = $db->query(sprintf("SELECT posts_photos.photo_id, posts_photos.source, posts_photos.blur FROM posts_photos INNER JOIN posts ON posts_photos.post_id = posts.post_id WHERE posts.user_id = %s AND posts.user_type = 'page'  ORDER BY posts_photos.photo_id DESC LIMIT %s, %s", secure($id, 'int'), secure($offset, 'int', false), secure($system['min_results_even'], 'int', false))) or _error("SQL_ERROR_THROWEN");
                 if ($get_photos->num_rows > 0) {
                     while ($photo = $get_photos->fetch_assoc()) {
                         $photo['manage'] = $manage_photos;
@@ -8419,16 +8419,15 @@ class User
      * @param string $context
      * @return array
      */
-    public function get_photo($photo_id, $full_details = false, $get_gallery = false, $context = 'photos')
+     public function get_photo($photo_id, $full_details = false, $get_gallery = false, $context = 'photos')
     {
         global $db, $system;
 
         /* get photo */
-        $get_photo = $db->query(sprintf("SELECT * FROM posts_photos INNER JOIN posts ON posts.post_type != 'product' WHERE photo_id = %s", secure($photo_id, 'int'))) or _error("SQL_ERROR_THROWEN");
+        $get_photo = $db->query(sprintf("SELECT * FROM posts_photos WHERE photo_id = %s", secure($photo_id, 'int'))) or _error("SQL_ERROR_THROWEN");
         if ($get_photo->num_rows == 0) {
             return false;
         }
-        var_dump($get_photo);
         $photo = $get_photo->fetch_assoc();
 
         /* get post */
