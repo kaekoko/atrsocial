@@ -2,7 +2,7 @@
 {include file='_header.tpl'}
 
 <!-- page header -->
-<div class="page-header" style="background-image: url({$system['system_url']}/content/themes/{$system['theme']}/images/headers/date-banner.jpg);backgorund-size:cover;">
+<div class="page-header" style="background-image: url({$system['system_url']}/content/themes/{$system['theme']}/images/headers/date-banner.jpg); background-size: cover;background-repeat: no-repeat;">
     <div class="circle-2"></div>
     <div class="circle-3"></div>
     <div class="container">
