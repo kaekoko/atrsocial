@@ -1,6 +1,6 @@
 /content/uploads
 /content/backups
-/content/themes/default/templates_conpiled
+/content/themes/default/templates_compiled
 /includes/config.php
 
 .env
