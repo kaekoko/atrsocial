@@ -361,11 +361,20 @@
                                     </label>
                                     <div class="col-md-9">
                                         <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text d-none d-sm-block">{$system['system_url']}/</span>
-                                            </div>
-                                            <input type="text" class="form-control" name="username" value="{$user->_data['user_name']}">
+                                        <button id="myInput" class="mr-4" readonly>{$system['system_url']}/{$user->_data['user_name']}</button>
+                                            <button onclick="copyToClipboard('#myInput')">Copy link</button>
                                         </div>
+                                        <script>
+                                            function copyToClipboard(element) {
+                                                    var $temp = $("<input>");
+                                                    $("body").append($temp);
+                                                    $temp.val($(element).text()).select();
+                                                    document.execCommand("copy");
+                                                    alert('copy text');
+                                                    $temp.remove();
+                                                }
+
+                                        </script>
                                         <span class="form-text">
                                             {__("Can only contain alphanumeric characters (A–Z, 0–9) and periods ('.')")}
                                         </span>
