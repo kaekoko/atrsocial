@@ -67,6 +67,8 @@ try {
                        echo $user['user_email'];
                        echo "</h6>";
                        
+                   }else{
+                       echo "no user found";
                    }
 
                  }
