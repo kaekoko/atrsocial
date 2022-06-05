@@ -62,8 +62,12 @@ try {
                      if (!_email($user['user_email'], $subject, $body['html'], $body['plain'])) {
                         throw new Exception(__("Activation email could not be sent"));
                     }
-                    echo $user['user_email'];
-                    echo" <br></br>";
+                   if($user['user_email']){
+                       echo "<h6>";
+                       echo $user['user_email'];
+                       echo "</h6>";
+                       
+                   }
 
                  }
            
