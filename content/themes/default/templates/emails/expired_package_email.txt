@@ -1,0 +1,7 @@
+{__("Hi")} {$name},
+{__("Your Subcribe Package Is Expired")} 
+{__("Renew Your Package, please follow this link")}:
+{$system['system_url']}/packages/
+
+
+{$system['system_title']} {__("Team")}
