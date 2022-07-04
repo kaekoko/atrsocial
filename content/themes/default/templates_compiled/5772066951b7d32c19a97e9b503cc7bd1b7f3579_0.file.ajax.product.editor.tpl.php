@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2022-05-14 08:52:34
+/* Smarty version 3.1.40, created on 2022-07-04 09:10:08
   from 'C:\xampp\htdocs\atrsocial\content\themes\default\templates\ajax.product.editor.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_627f6dd287ee74_26836477',
+  'unifunc' => 'content_62c2ae70490a13_05064435',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5772066951b7d32c19a97e9b503cc7bd1b7f3579' => 
     array (
       0 => 'C:\\xampp\\htdocs\\atrsocial\\content\\themes\\default\\templates\\ajax.product.editor.tpl',
-      1 => 1652517582,
+      1 => 1656925800,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:__custom_fields.tpl' => 1,
   ),
 ),false)) {
-function content_627f6dd287ee74_26836477 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62c2ae70490a13_05064435 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="modal-header">
     <h6 class="modal-title">
         <i class="fa fa-shopping-cart mr10" style="color: #2b53a4;"></i><?php echo __("Edit Product");?>
@@ -32,7 +32,7 @@ function content_627f6dd287ee74_26836477 (Smarty_Internal_Template $_smarty_tpl)
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form class="js_ajax-forms" data-url="posts/edit.php">
+<form class="js_ajax-forms publisher-mini" data-url="posts/edit.php">
     <div class="modal-body">
         <div class="row">
             <div class="form-group col-md-8">
@@ -100,6 +100,17 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         <!-- error -->
         <div class="alert alert-danger mb0 x-hidden"></div>
         <!-- error -->
+         <div class="form-group">
+            <label class="form-control-label"><?php echo __("Photos");?>
+</label>
+            <div class="attachments clearfix" data-type="photos">
+                <ul>
+                    <li class="add">
+                        <i class="fa fa-camera js_x-uploader" data-handle="publisher-mini" data-multiple="true"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <input type="hidden" name="handle" value="product">
@@ -107,7 +118,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 ">
         <button type="button" class="btn btn-light" data-dismiss="modal"><?php echo __("Cancel");?>
 </button>
-        <button type="submit" class="btn btn-primary"><?php echo __("Save");?>
+        <button type="submit" class="btn btn-primary js_publisher-btn js_publisher-product"><?php echo __("Save");?>
 </button>
     </div>
 </form><?php }
