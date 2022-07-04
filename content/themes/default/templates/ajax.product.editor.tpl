@@ -6,7 +6,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form class="js_ajax-forms publisher-mini" data-url="posts/edit.php">
+<form class="js_ajax-forms publisher-mini" data-url="posts/edit.php" enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
             <div class="form-group col-md-8">
@@ -67,6 +67,6 @@
         <input type="hidden" name="handle" value="product">
         <input type="hidden" name="id" value="{$post['post_id']}">
         <button type="button" class="btn btn-light" data-dismiss="modal">{__("Cancel")}</button>
-        <button type="submit" class="btn btn-primary js_publisher-btn js_publisher-product">{__("Save")}</button>
+        <button type="submit" class="btn btn-primary js_edit-product">{__("Save")}</button>
     </div>
 </form>

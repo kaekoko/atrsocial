@@ -961,6 +961,43 @@ $(function () {
                 modal('#modal-message', { title: __['Error'], message: __['There is something that went wrong!'] });
             });
     });
+    /* edit  product */
+    $('body').on('click', '.js_edit-product', function () {
+        var _this = $(this);
+        /* get publisher */
+        var publisher = _this.parents('.publisher-mini');
+        /* get product */
+        var product = {};
+        publisher.find('input, textarea, select').each(function (index) {
+            product[$(this).attr('name')] = $(this).val();
+        });
+        if (!$.isEmptyObject(product)) {
+            product['category'] = publisher.find('select[name="category"]').val();
+            product['status'] = publisher.find('select[name="status"]').val();
+        } else {
+            return;
+        }
+        /* get text */
+        var textarea = publisher.find('textarea');
+        /* get photos */
+        var photos = publisher.data('photos');
+        /* button loading */
+        button_status(_this, "loading");
+        $.post(api['posts/product'], { 'do': 'publish', 'product': JSON.stringify(product), 'message': textarea.val(), 'photos': JSON.stringify(photos) }, function (response) {
+            /* button reset */
+            button_status(_this, "reset");
+            if (response.error) {
+                publisher.find('.alert.alert-danger').html(response.message).slideDown();
+            } else if (response.callback) {
+                eval(response.callback);
+            }
+        }, "json")
+            .fail(function () {
+                /* button reset */
+                button_status(_this, "reset");
+                modal('#modal-message', { title: __['Error'], message: __['There is something that went wrong!'] });
+            });
+    });
     /* publish new photos to album */
     $('body').on('click', '.js_publisher-album', function () {
         var _this = $(this);

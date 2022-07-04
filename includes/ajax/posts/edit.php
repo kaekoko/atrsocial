@@ -108,9 +108,9 @@ try {
 			// edit product
 			$user->edit_product($_POST['id'], $_POST['message'], $_POST);
 			
-
+            // return $_POST;
 			// return
-			$return['callback'] = 'window.location = "' . $system['system_url'] . '/posts/' . $_POST['id'] . '";';
+			//$return['callback'] = 'window.location = "' . $system['system_url'] . '/posts/' . $_POST['id'] . '";';
 			break;
 
 		case 'funding':

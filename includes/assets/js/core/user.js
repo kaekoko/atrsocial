@@ -899,6 +899,15 @@ $(function () {
                 if (!publisher.data('photos')) {
                     publisher.data('photos', {});
                 }
+                var photos = publisher.data('photos');
+                console.log(publisher);
+                console.log($(this).parents('form'));
+                for (const key in photos) {
+                    console.log(key);
+                    let inputPhoto = `<input type="hidden" class="photoupload" name="photos[]" value="${key}">`;
+                    $(this).parents('form').append(inputPhoto);
+                }
+                console.log($(this).parents('form'));
                 var attachments = publisher.find('.attachments[data-type="photos"]');
                 var loader = $('<ul></ul>').appendTo(attachments);
                 for (var i = 0; i < files_num; ++i) {
