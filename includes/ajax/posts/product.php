@@ -132,6 +132,7 @@ try {
 			/* assign variables */
 			$smarty->assign('post', $post);
 			$smarty->assign('market_categories', $user->get_categories("market_categories"));
+			$smarty->assign('user_pages', $user->get_pages());
 			$smarty->assign('custom_fields', $user->get_custom_fields(array("for" => "product", "get" => "settings", "node_id" => $_GET['post_id'])));
 
 			// return

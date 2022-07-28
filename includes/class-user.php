@@ -6624,7 +6624,7 @@ class User
         /* update post */
         $db->query(sprintf("UPDATE posts SET text = %s WHERE post_id = %s", secure($message), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
         /* update product */
-        $db->query(sprintf("UPDATE posts_products SET name = %s, price = %s, category_id = %s, status = %s, location = %s WHERE post_id = %s", secure($args['name']), secure($args['price']), secure($args['category'], 'int'), secure($args['status']), secure($args['location']), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
+        $db->query(sprintf("UPDATE posts_products SET name = %s, price = %s, category_id = %s, status = %s, location = %s, page_id = %s WHERE post_id = %s", secure($args['name']), secure($args['price']), secure($args['category'], 'int'), secure($args['status']), secure($args['location']),secure($args['page']), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
         $db->query(sprintf("DELETE FROM posts_photos WHERE post_id = %s", secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
        $testQuery = [];
         foreach ($args['photos'] as $photo) {

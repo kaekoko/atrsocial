@@ -1,28 +1,29 @@
 <?php
-/* Smarty version 3.1.40, created on 2022-07-28 07:52:14
+/* Smarty version 3.1.40, created on 2022-07-28 10:19:39
   from 'C:\xampp\htdocs\atrsocial\content\themes\default\templates\ajax.product.editor.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_62e2402e146148_77145960',
+  'unifunc' => 'content_62e262bb0e78b5_42089578',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5772066951b7d32c19a97e9b503cc7bd1b7f3579' => 
     array (
       0 => 'C:\\xampp\\htdocs\\atrsocial\\content\\themes\\default\\templates\\ajax.product.editor.tpl',
-      1 => 1658994685,
+      1 => 1659003560,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:__categories.recursive_options.tpl' => 1,
+    'file:_page.recursive_options.tpl' => 1,
     'file:__custom_fields.tpl' => 1,
   ),
 ),false)) {
-function content_62e2402e146148_77145960 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62e262bb0e78b5_42089578 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="modal-header">
     <h6 class="modal-title">
         <i class="fa fa-shopping-cart mr10" style="color: #2b53a4;"></i><?php echo __("Edit Product");?>
@@ -79,11 +80,33 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </select>
             </div>
         </div>
+        <div class="row">
+        <div class="form-group col-md-8">
+                <label class="form-control-label"><?php echo __("Page");?>
+</label>
+                <select name="page" class="form-control">
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['user_pages']->value, 'page');
+$_smarty_tpl->tpl_vars['page']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['page']->value) {
+$_smarty_tpl->tpl_vars['page']->do_else = false;
+?>
+                        <?php $_smarty_tpl->_subTemplateRender('file:_page.recursive_options.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('data_category'=>$_smarty_tpl->tpl_vars['post']->value['product']['page_id']), 0, true);
+?>
+                     <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                </select>
+            </div>
+
+        <div class="form-group col-md-4">
         <div class="form-group">
             <label class="form-control-label"><?php echo __("Location");?>
 </label>
             <input name="location" type="text" class="form-control js_geocomplete" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['product']['location'];?>
 ">
+        </div>
+        </div>
         </div>
         <div class="form-group">
             <label class="form-control-label"><?php echo __("Description");?>

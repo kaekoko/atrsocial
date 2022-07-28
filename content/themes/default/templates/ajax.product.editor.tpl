@@ -36,9 +36,22 @@
                 </select>
             </div>
         </div>
+        <div class="row">
+        <div class="form-group col-md-8">
+                <label class="form-control-label">{__("Page")}</label>
+                <select name="page" class="form-control">
+                    {foreach $user_pages as $page}
+                        {include file='_page.recursive_options.tpl' data_category=$post['product']['page_id']}
+                     {/foreach}
+                </select>
+            </div>
+
+        <div class="form-group col-md-4">
         <div class="form-group">
             <label class="form-control-label">{__("Location")}</label>
             <input name="location" type="text" class="form-control js_geocomplete" value="{$post['product']['location']}">
+        </div>
+        </div>
         </div>
         <div class="form-group">
             <label class="form-control-label">{__("Description")}</label>
