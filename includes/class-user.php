@@ -9573,6 +9573,29 @@ class User
         }
         return $friends;
     }
+    /**
+     * get_page_products
+     * 
+     * @param integer $page_id
+     * @param integer $offset
+     * @return array
+     */
+    public function get_page_products($page_id, $offset = 0)
+    {
+        global $db, $system;
+        $products=[];
+         $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.page_id = $page_id") or _error("SQL_ERROR");
+        
+          while ($row = $get_rows->fetch_assoc()) {
+            $row = $this->get_post($row['post_id']);
+         
+            if ($row) {
+                $products[] = $row;
+            }
+            
+         }
+        return $products;
+    }
 
 
     /**

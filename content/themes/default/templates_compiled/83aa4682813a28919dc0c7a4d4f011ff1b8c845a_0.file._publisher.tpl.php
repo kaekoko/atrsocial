@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2022-07-28 09:19:21
+/* Smarty version 3.1.40, created on 2022-07-28 16:04:48
   from 'C:\xampp\htdocs\atrsocial\content\themes\default\templates\_publisher.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_62e254997008d4_26697306',
+  'unifunc' => 'content_62e2b3a0d52202_54119206',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83aa4682813a28919dc0c7a4d4f011ff1b8c845a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\atrsocial\\content\\themes\\default\\templates\\_publisher.tpl',
-      1 => 1658999935,
+      1 => 1659024282,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:__svg_icons.tpl' => 22,
   ),
 ),false)) {
-function content_62e254997008d4_26697306 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62e2b3a0d52202_54119206 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="publisher-overlay"></div>
 <div class="x-form publisher" data-handle="<?php echo $_smarty_tpl->tpl_vars['_handle']->value;?>
 " <?php if ($_smarty_tpl->tpl_vars['_id']->value) {?>data-id="<?php echo $_smarty_tpl->tpl_vars['_id']->value;?>
@@ -342,7 +342,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="divider"></div>
             <?php }?>
             <ul class="row">
-                <?php if ($_smarty_tpl->tpl_vars['user']->value->_data['can_go_live'] && $_smarty_tpl->tpl_vars['_handle']->value != "page" && $_smarty_tpl->tpl_vars['_handle']->value != "group" && $_smarty_tpl->tpl_vars['_handle']->value != "event") {?>
+                <?php if ($_smarty_tpl->tpl_vars['user']->value->_data['can_go_live'] && $_smarty_tpl->tpl_vars['_handle']->value != "event") {?>
                     <li class="col-md-6">
                         <a class="publisher-tools-tab link js_publisher-tab" data-tab="live" href="<?php echo $_smarty_tpl->tpl_vars['system']->value['system_url'];?>
 /live">

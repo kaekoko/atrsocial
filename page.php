@@ -54,6 +54,8 @@ try {
 			/* get invites */
 			$spage['invites'] = $user->get_page_invites($spage['page_id']);
 
+			$spage['products'] = $user->get_page_invites($spage['page_id']);
+
 			/* get photos */
 			$spage['photos'] = $user->get_photos($spage['page_id'], 'page');
 
@@ -77,6 +79,11 @@ try {
 		case 'photos':
 			/* get photos */
 			$spage['photos'] = $user->get_photos($spage['page_id'], 'page');
+			break;
+
+		case 'products':
+			/* get photos */
+			$spage['products'] = $user->get_page_products($spage['page_id'],'page');
 			break;
 
 		case 'albums':

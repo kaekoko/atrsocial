@@ -237,7 +237,7 @@
                 <div class="divider"></div>
             {/if}
             <ul class="row">
-                {if $user->_data['can_go_live'] && $_handle != "page" && $_handle != "group" && $_handle != "event"}
+                {if $user->_data['can_go_live'] &&  $_handle != "event"}
                     <li class="col-md-6">
                         <a class="publisher-tools-tab link js_publisher-tab" data-tab="live" href="{$system['system_url']}/live">
                             {include file='__svg_icons.tpl' icon="live" class="mr5" width="24px" height="24px"}
