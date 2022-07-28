@@ -4952,7 +4952,7 @@ class User
             case 'product':
                 /* insert product details */
                 /* Note: no need to return any data as publisher will redirect to post link */
-                $db->query(sprintf("INSERT INTO posts_products (post_id, name, price, category_id, status, location) VALUES (%s, %s, %s, %s, %s, %s)", secure($post['post_id'], 'int'), secure($args['product']->name), secure($args['product']->price), secure($args['product']->category, 'int'), secure($args['product']->status), secure($args['product']->location))) or _error("SQL_ERROR_THROWEN");
+                $db->query(sprintf("INSERT INTO posts_products (post_id, name, price, category_id, status, location,page_id) VALUES (%s, %s, %s, %s, %s, %s,%s)", secure($post['post_id'], 'int'), secure($args['product']->name), secure($args['product']->price), secure($args['product']->category, 'int'), secure($args['product']->status), secure($args['product']->location),secure($args['product']->page))) or _error("SQL_ERROR_THROWEN");
                 /* insert product photos */
                 if (count($args['photos']) > 0) {
                     foreach ($args['photos'] as $photo) {

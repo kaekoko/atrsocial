@@ -40,6 +40,9 @@ try {
 		case 'create':
 			// assign variables
 			$smarty->assign('market_categories', $user->get_categories("market_categories"));
+			$smarty->assign('user_pages', $user->get_pages());
+			
+
 			$smarty->assign('custom_fields', $user->get_custom_fields(array("for" => "product")));
 
 			// return
@@ -72,6 +75,7 @@ try {
 			if (!$user->get_category("market_categories", $_POST['product']->category)) {
 				return_json(array('error' => true, 'message' => __("Please select valid product category")));
 			}
+		
 			/* check product status */
 			if (!in_array($_POST['product']->status, array('gold', 'platinum','diamond'))) {
 				return_json(array('error' => true, 'message' => __("Please select valid product status")));
@@ -97,7 +101,7 @@ try {
 			} catch (Exception $e) {
 				return_json(array('error' => true, 'message' => $e->getMessage()));
 			}
-
+            //return_json(array('error' => true, 'message' => __($_POST['product'])));
 			/* prepare inputs */
 			$inputs['handle'] = "me";
 			$inputs['privacy'] = "public";
@@ -105,6 +109,7 @@ try {
 			$inputs['message'] = $_POST['message'];
 			$inputs['product'] = $_POST['product'];
 			$inputs['photos'] = $photos;
+			
 
 			// publish
 			$post = $user->publisher($inputs);

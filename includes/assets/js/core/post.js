@@ -936,6 +936,7 @@ $(function () {
         });
         if (!$.isEmptyObject(product)) {
             product['category'] = publisher.find('select[name="category"]').val();
+            product['page'] = publisher.find('select[name="page"]').val();
             product['status'] = publisher.find('select[name="status"]').val();
         } else {
             return;
