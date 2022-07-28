@@ -191,6 +191,11 @@
                                 <i class="fa fa-video fa-fw mr5"></i>{__("Videos")}
                             </a>
                         </li>
+                        <li>
+                            <a href="{$system['system_url']}/pages/{$spage['page_name']}/product" {if $view == "product"}class="active"{/if}>
+                                <i class="fa fa-images fa-fw mr5"></i>{__("Products")}
+                            </a>
+                        </li>
                         {if $spage['i_like']}
                             <li>
                                 <a href="{$system['system_url']}/pages/{$spage['page_name']}/invites" {if $view == "invites"}class="active"{/if}>
