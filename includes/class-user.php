@@ -6625,8 +6625,18 @@ class User
         $db->query(sprintf("UPDATE posts SET text = %s WHERE post_id = %s", secure($message), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
         /* update product */
         $db->query(sprintf("UPDATE posts_products SET name = %s, price = %s, category_id = %s, status = %s, location = %s WHERE post_id = %s", secure($args['name']), secure($args['price']), secure($args['category'], 'int'), secure($args['status']), secure($args['location']), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
-        
         $db->query(sprintf("DELETE FROM posts_photos WHERE post_id = %s", secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
+       $testQuery = [];
+        foreach ($args['photos'] as $photo) {
+            $photoQuery = sprintf("INSERT INTO posts_photos (post_id, album_id, source) VALUES (%s, %s, %s)", secure($post_id, 'int'), secure($args['album_id'], 'int'), secure($photo));
+            $testQuery[]= $photoQuery;
+            $db->query($photoQuery) or _error("SQL_ERROR_THROWEN");
+            // _error($test);
+            // $db->query(sprintf("INSERT INTO posts_photos (post_id, album_id, source, blur) VALUES (%s, %s, %s, %s)", secure($post_id, 'int'), secure($args['album_id'], 'int'), secure($photo), '')) or _error("SQL_ERROR_THROWEN");
+        }
+        // return_json(array('error' => true, 'message' => $testQuery));
+        
+        
     }
 
 

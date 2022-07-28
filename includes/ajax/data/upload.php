@@ -140,7 +140,7 @@ try {
                     // watermark images
                     $image_watermarked = false;
                     if ($system['watermark_enabled']) {
-                        if (($_POST['handle'] == "publisher" || $_POST['handle'] == "publisher-mini") && !in_array($image->_img_type, ["image/gif", "image/webp"])) {
+                        if (($_POST['handle'] == "publisher" || $_POST['handle'] == "publisher-mini" || $_POST['handle'] == "edit-mini") && !in_array($image->_img_type, ["image/gif", "image/webp"])) {
                             watermark_image($file["tmp_name"], $image->_img_type);
                             $image_watermarked = true;
                         }

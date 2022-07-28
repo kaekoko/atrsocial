@@ -1055,6 +1055,7 @@
     <!-- Uploader -->
     <script id="uploader-attachments-image-item" type="text/template">
         <li class="item deletable" data-src="{literal}{{src}}{/literal}">
+             <input type="hidden" name="photos[]" value="{literal}{{src}}{/literal}">
             <img alt="" src="{literal}{{image_path}}{/literal}">
             <button type="button" class="close {literal}{{#mini}}{/literal}js_publisher-mini-attachment-image-remover{literal}{{/mini}}{/literal}{literal}{{^mini}}{/literal}js_publisher-attachment-image-remover{literal}{{/mini}}{/literal}" title='{__("Remove")}'><span>&times;</span></button>
         </li>

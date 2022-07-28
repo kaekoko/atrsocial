@@ -54,7 +54,7 @@
         <!-- error -->
          <div class="form-group">
             <label class="form-control-label">{__("Photos")}</label>
-            <div class="attachments clearfix" data-type="photos">
+           <div class="attachments clearfix" data-type="photos">
                 <ul>
                     <li class="add">
                         <i class="fa fa-camera js_x-uploader" data-handle="publisher-mini" data-multiple="true"></i>
@@ -63,10 +63,11 @@
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
         <input type="hidden" name="handle" value="product">
         <input type="hidden" name="id" value="{$post['post_id']}">
         <button type="button" class="btn btn-light" data-dismiss="modal">{__("Cancel")}</button>
-        <button type="submit" class="btn btn-primary js_edit-product">{__("Save")}</button>
+        <button type="submit" class="btn btn-primary ">{__("Save")}</button>
     </div>
 </form>

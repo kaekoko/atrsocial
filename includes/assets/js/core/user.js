@@ -987,6 +987,24 @@ $(function () {
                 /* disable publisher button */
                 button_status(publisher_button, "loading");
 
+            }else if (handle == "edit-mini") {
+                var publisher = $(this).parents('.edit-mini');
+                var publisher_button = publisher.find('.js_publisher-btn');
+                var files_num = uploader.get(0).files.length;
+                /* check if there is already uploading process */
+                if (!publisher.data(type)) {
+                    publisher.data(type, {});
+                }
+                var attachments = publisher.find('.attachments[data-type="videos"]');
+                var loader = $('<ul></ul>').appendTo(attachments);
+                var files_names = [];
+                for (var i = 0; i < files_num; ++i) {
+                    files_names[i] = uploader.get(0).files[i].name;
+                    $('<li class="loading"><div class="progress x-progress"><div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></li>').appendTo(loader).show();
+                }
+                /* disable publisher button */
+                button_status(publisher_button, "loading");
+
             } else if (handle == "x-video") {
                 var parent = $(this).parents('.x-image');
                 var loader = parent.find('.x-image-loader');

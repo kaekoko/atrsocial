@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.40, created on 2022-07-04 10:32:04
+/* Smarty version 3.1.40, created on 2022-07-28 07:52:14
   from 'C:\xampp\htdocs\atrsocial\content\themes\default\templates\ajax.product.editor.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.40',
-  'unifunc' => 'content_62c2c1a449c780_93338366',
+  'unifunc' => 'content_62e2402e146148_77145960',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5772066951b7d32c19a97e9b503cc7bd1b7f3579' => 
     array (
       0 => 'C:\\xampp\\htdocs\\atrsocial\\content\\themes\\default\\templates\\ajax.product.editor.tpl',
-      1 => 1656930538,
+      1 => 1658994685,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:__custom_fields.tpl' => 1,
   ),
 ),false)) {
-function content_62c2c1a449c780_93338366 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62e2402e146148_77145960 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="modal-header">
     <h6 class="modal-title">
         <i class="fa fa-shopping-cart mr10" style="color: #2b53a4;"></i><?php echo __("Edit Product");?>
@@ -103,7 +103,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
          <div class="form-group">
             <label class="form-control-label"><?php echo __("Photos");?>
 </label>
-            <div class="attachments clearfix" data-type="photos">
+           <div class="attachments clearfix" data-type="photos">
                 <ul>
                     <li class="add">
                         <i class="fa fa-camera js_x-uploader" data-handle="publisher-mini" data-multiple="true"></i>
@@ -112,13 +112,14 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
         <input type="hidden" name="handle" value="product">
         <input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['post_id'];?>
 ">
         <button type="button" class="btn btn-light" data-dismiss="modal"><?php echo __("Cancel");?>
 </button>
-        <button type="submit" class="btn btn-primary js_edit-product"><?php echo __("Save");?>
+        <button type="submit" class="btn btn-primary "><?php echo __("Save");?>
 </button>
     </div>
 </form><?php }
