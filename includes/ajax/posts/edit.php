@@ -104,11 +104,12 @@ try {
 			} catch (Exception $e) {
 				return_json(array('error' => true, 'message' => $e->getMessage()));
 			}
+			//$ephoto=count($_POST['photos']);
 			// $_POST['photos'] = json_decode($_POST['photos']);
-			//return_json(array('error' => true, 'message' => __($_POST['photos'])));
+		   // return_json(array('error' => true, 'message' => __($args['photos'])));
 			// edit product
 			
-			$user->edit_product($_POST['id'], $_POST['message'], $_POST);
+			$user->edit_product($_POST['id'], $_POST['message'], $_POST,$ephoto);
 		
 			
             // return $_POST;

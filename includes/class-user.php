@@ -6609,7 +6609,7 @@ class User
      * @param array $args
      * @return void
      */
-    public function edit_product($post_id, $message, $args = [])
+    public function edit_product($post_id, $message, $args = [],$ephoto)
     {
         global $db, $system;
         /* (check|get) post */
@@ -6625,8 +6625,12 @@ class User
         $db->query(sprintf("UPDATE posts SET text = %s WHERE post_id = %s", secure($message), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
         /* update product */
         $db->query(sprintf("UPDATE posts_products SET name = %s, price = %s, category_id = %s, status = %s, location = %s, page_id = %s WHERE post_id = %s", secure($args['name']), secure($args['price']), secure($args['category'], 'int'), secure($args['status']), secure($args['location']),secure($args['page']), secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
-        $db->query(sprintf("DELETE FROM posts_photos WHERE post_id = %s", secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
-       $testQuery = [];
+       
+        if ($args['photos']){
+            $db->query(sprintf("DELETE FROM posts_photos WHERE post_id = %s", secure($post_id, 'int'))) or _error("SQL_ERROR_THROWEN");
+        }
+        
+        $testQuery = [];
         foreach ($args['photos'] as $photo) {
             $photoQuery = sprintf("INSERT INTO posts_photos (post_id, album_id, source) VALUES (%s, %s, %s)", secure($post_id, 'int'), secure($args['album_id'], 'int'), secure($photo));
             $testQuery[]= $photoQuery;
