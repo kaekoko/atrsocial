@@ -671,7 +671,7 @@
 
                                 {foreach $spage['products'] as $post}
                                 <div class="col-md-6 col-lg-4">
-                                       {$post['product']['price']}
+                                      
                                     <div class="card product">
                                         <div class="product-image">
                                             <div class="product-price">
