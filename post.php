@@ -52,14 +52,14 @@ try {
 	        if (in_array($_GET['post_id'], $product_by_package) || in_array($_GET['post_id'], $product_by_user) || $user->_is_admin){
                 $post = $user->get_post($_GET['post_id']);
 			}else{
-				_error('PERMISSION');
+				$post = $user->get_post($_GET['post_id']);
 
 			}
                 
 		}elseif($user->_is_admin){
 			$post = $user->get_post($_GET['post_id']);
 		}else{
-			_error('PERMISSION');
+			$post = $user->get_post($_GET['post_id']);
 		}
 			  
 
