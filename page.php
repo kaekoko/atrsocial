@@ -83,7 +83,8 @@ try {
 
 		case 'products':
 			/* get photos */
-			$spage['products'] = $user->get_page_products($spage['page_id'],'page');
+			print_r($user->_data['user_package']);
+			$spage['products'] = $user->get_page_products($spage['page_id'],'page',$user->_is_admin,$user->_data['user_package']);
 			break;
 
 		case 'albums':

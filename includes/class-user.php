@@ -9584,11 +9584,22 @@ class User
      * @param integer $offset
      * @return array
      */
-    public function get_page_products($page_id, $offset = 0)
+    public function get_page_products($page_id, $offset = 0,$admin,$package)
     {
         global $db, $system;
         $products=[];
+        if($admin == 1){
          $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.page_id = $page_id") or _error("SQL_ERROR");
+        }elseif($package == 1){
+            $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.page_id = $page_id AND posts_products.status = 'gold'") or _error("SQL_ERROR");
+        }elseif($package == 2){
+            $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.page_id = $page_id AND posts_products.status = 'gold' OR posts_products.status = 'platinum'") or _error("SQL_ERROR");
+        }elseif($package == 3){
+            $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '1' AND posts_products.page_id = $page_id") or _error("SQL_ERROR");
+        }else{
+            $get_rows = $db->query("SELECT posts.post_id FROM posts INNER JOIN posts_products ON posts.post_id = posts_products.post_id INNER JOIN users ON posts.user_id = users.user_id WHERE posts.post_type = 'product' AND posts_products.available = '0' AND posts_products.page_id = $page_id") or _error("SQL_ERROR");
+        }
+
         
           while ($row = $get_rows->fetch_assoc()) {
             $row = $this->get_post($row['post_id']);

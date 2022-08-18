@@ -725,6 +725,7 @@
                             {$pager}
                             {else}
                             {include file='_no_data.tpl'}
+                            
                             {/if}
                         </div>
                         <!-- right panel -->
